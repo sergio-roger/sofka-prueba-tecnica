@@ -1,0 +1,47 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+body {
+  background-color: var(--sofka-color-bg-gray-100);
+  width: 100%;
+}
+
+.border {
+  border: 1px solid red;
+}
+
+.container {
+  width: 100%;
+  margin: 3rem auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+
+  .view {
+    padding: 1.5rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+
+.search-box {
+  margin: 1rem 0;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 12rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+}

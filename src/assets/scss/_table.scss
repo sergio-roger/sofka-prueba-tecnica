@@ -1,0 +1,50 @@
+.table-wrapper {
+  overflow-x: auto;
+  background-color: var(--sofka-color-bg-white);
+  padding: 1.4rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  thead > tr {
+    background-color: var(--sofka-color-bg-gray-100);
+    border-bottom: 1px solid var(--sofka-color-bg-gray-200);
+  }
+
+  tbody > tr {
+    border-bottom: 1px solid var(--sofka-color-bg-gray-200);
+  }
+
+  thead > tr > th, tbody > tr > td {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: start;
+  }
+
+   tbody > tr > td {
+    font-weight: 400;
+   }
+}
+
+.table-wrapper .table-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+
+  span {
+    max-width: 7rem;
+  }
+
+  select {
+    max-width: 4rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+  }
+}

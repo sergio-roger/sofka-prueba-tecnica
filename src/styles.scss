@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use 'assets/scss/tokens';
+
+@use 'assets/scss/general';
+@use 'assets/scss/table';

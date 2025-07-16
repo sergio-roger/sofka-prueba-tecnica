@@ -1,1 +1,43 @@
-<p>list-products works!</p>
+<div class="view">
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Search..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()"
+    />
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del producto</th>
+          <th>Descripción</th>
+          <th>Fecha de liberación</th>
+          <th>Fecha de restructuración</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of [1,1,1,1]; track item) {
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="table-footer">
+      <span>5 Resultados</span>
+
+      <select name="" id="">
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
+</div>
