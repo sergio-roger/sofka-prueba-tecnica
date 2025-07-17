@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsService } from '@products/services/products.service';
 import { Product } from '@products/types/product';
@@ -10,12 +14,19 @@ import { CreateProductsForm } from './create-products.form';
 @Component({
   selector: 'app-create-products',
   standalone: true,
-  imports: [CommonModule, InputErrorsComponent, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    InputErrorsComponent,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './create-products.component.html',
-  styleUrl: './create-products.component.scss'
+  styleUrl: './create-products.component.scss',
 })
-export class CreateProductsComponent extends CreateProductsForm implements OnInit{
-
+export class CreateProductsComponent
+  extends CreateProductsForm
+  implements OnInit
+{
   private productsService = inject(ProductsService);
   private router = inject(Router);
 
@@ -24,7 +35,7 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
   get classButtonSend(): Record<string, boolean> {
     return {
       'opacity-low': this.submit || this.invalid,
-    }
+    };
   }
 
   ngOnInit(): void {
@@ -43,8 +54,10 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
 
   public getClassInvalid(control: string): Record<string, boolean> {
     return {
-      'border-red': this.validation.verify(this.form.get(control) as AbstractControl),
-    }
+      'border-red': this.validation.verify(
+        this.form.get(control) as AbstractControl
+      ),
+    };
   }
 
   public onSubmit(): void {
@@ -54,7 +67,7 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
       return;
     }
 
-    const product = this.form.value as Product;
+    const product = this.form.getRawValue() as Product;
     this.productsService.create(product);
   }
 
@@ -65,5 +78,11 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
 
   public redirectToList(): void {
     this.router.navigateByUrl('/products/list');
+  }
+
+  public updateDateReivision(): void {
+    const date = this.dateFnsCustom.parseDate(this.date_release.value);
+    const nextYear = this.dateFnsCustom.addYears(1, date);
+    this.date_revision.setValue(nextYear);
   }
 }

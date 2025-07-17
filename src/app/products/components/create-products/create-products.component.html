@@ -14,8 +14,9 @@
   <form class="form form-create" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-body">
       <div class="input input-text">
-        <label for="">ID</label>
+        <label for="id">ID</label>
         <input
+          id="id"
           type="text"
           formControlName="id"
           minLength="3"
@@ -30,8 +31,9 @@
       </div>
 
       <div class="input input-text">
-        <label for="">Nombre</label>
+        <label for="name">Nombre</label>
         <input
+          id="name"
           type="text"
           formControlName="name"
           minLength="5"
@@ -46,8 +48,9 @@
       </div>
 
       <div class="input input-text">
-        <label for="">Descripción</label>
+        <label for="description">Descripción</label>
         <input
+          id="description"
           type="text"
           formControlName="description"
           minLength="10"
@@ -62,8 +65,9 @@
       </div>
 
       <div class="input input-text">
-        <label for="">Logo</label>
+        <label for="logo">Logo</label>
         <input
+          id="logo"
           type="text"
           formControlName="logo"
           required
@@ -76,12 +80,14 @@
       </div>
 
       <div class="input input-text">
-        <label for="">Fecha Liberación</label>
+        <label for="date_release">Fecha Liberación</label>
         <input
+          id="date_release"
           type="date"
           formControlName="date_release"
           required
           [ngClass]="getClassInvalid('date_release')"
+          (input)="updateDateReivision()"
         />
 
         @if (validation.verify(date_release) && date_release.errors) {
@@ -89,9 +95,10 @@
         }
       </div>
 
-      <div class="input input-text">
-        <label for="">Fecha revisión</label>
+      <div class="input input-text disabled">
+        <label for="date_revision">Fecha revisión</label>
         <input
+          id="date_revision"
           type="date"
           formControlName="date_revision"
           required

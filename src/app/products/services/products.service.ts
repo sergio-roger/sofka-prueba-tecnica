@@ -7,7 +7,7 @@ import { ProductResponse, ProductsResponse } from '../types/product.response';
 import { ProductsHttpService } from './products-http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
   private productsSubject = new Subject<Product[]>();
@@ -30,12 +30,11 @@ export class ProductsService {
   }
 
   public list(): void {
-    this.http.list$()
-    .subscribe({
+    this.http.list$().subscribe({
       next: this.nextList,
       error: this.errorList,
     });
-  };
+  }
 
   private nextList = (response: ProductsResponse): void => {
     if (!response) {
@@ -56,8 +55,7 @@ export class ProductsService {
       return;
     }
 
-    this.http.create$(product)
-    .subscribe({
+    this.http.create$(product).subscribe({
       next: this.nextCreate,
       error: this.errorCreate,
     });
@@ -75,7 +73,11 @@ export class ProductsService {
   };
 
   private errorCreate = (error: HttpErrorResponse): void => {
-    console.log(error);
+    if (error.status === 400) {
+      this.toastr.error(
+        'Los datos enviados están incompletos, revisa el formulario'
+      );
+    }
     this.productSubject.next(null);
   };
 
@@ -84,10 +86,9 @@ export class ProductsService {
       return;
     }
 
-    this.http.verificationId$(id)
-    .subscribe({
+    this.http.verificationId$(id).subscribe({
       next: this.nextVerificatonid,
-      error: this.errorVerificationid
+      error: this.errorVerificationid,
     });
   }
 

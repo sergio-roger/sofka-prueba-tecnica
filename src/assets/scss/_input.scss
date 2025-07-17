@@ -22,7 +22,7 @@ form {
   }
 
   input {
-    padding: 0.5rem;
+    padding: 0.7rem;
     box-sizing: border-box;
     border-radius: 0.4rem;
     outline: none;
@@ -38,5 +38,15 @@ form {
     .form-body {
       grid-template-columns: 1fr 1fr;
     }
+  }
+}
+
+.disabled {
+  label {
+    opacity: 0.3;
+  }
+
+  input {
+    border: 1px solid var(--sofka-color-gray-100) !important;
   }
 }
