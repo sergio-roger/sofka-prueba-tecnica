@@ -16,8 +16,8 @@ import { CreateProductsForm } from './create-products.form';
   standalone: true,
   imports: [
     CommonModule,
-    InputErrorsComponent,
     FormsModule,
+    InputErrorsComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './create-products.component.html',

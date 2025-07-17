@@ -39,22 +39,7 @@
         <td>{{ item.date_release | date : "dd/MM/yyyy" }}</td>
         <td>{{ item.date_revision | date : "dd/MM/yyyy" }}</td>
         <td>
-          <div class="table-actions">
-            <button
-              class="form-btn btn-action"
-              (click)="viewMenuContextual(item)"
-            >
-              <span class="material-symbols-outlined"> more_vert </span>
-            </button>
-
-            <div class="table-option-menu" [ngClass]="{ hidden: !item.action }">
-              <span
-                class="form-btn-small"
-                [routerLink]="['/products', 'edit', item.id]"
-                >Editar</span
-              >
-            </div>
-          </div>
+          <ng-container *ngTemplateOutlet="TDropdown; context: { product: item }" />
         </td>
       </tr>
       } @empty {
@@ -82,4 +67,18 @@
       }
     </select>
   </form>
+</ng-template>
+
+<ng-template #TDropdown let-product="product">
+  <div class="table-actions">
+    <button class="form-btn btn-action" (click)="viewMenuContextual(product)">
+      <span class="material-symbols-outlined"> more_vert </span>
+    </button>
+
+    <div class="table-option-menu" [ngClass]="{ hidden: !product.action }">
+      <span class="form-btn-small" [routerLink]="['/products', 'edit', product.id]"
+        >Editar</span
+      >
+    </div>
+  </div>
 </ng-template>
