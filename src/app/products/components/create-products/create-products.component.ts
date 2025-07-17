@@ -38,6 +38,7 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
     }
 
     this.reset();
+    this.redirectToList();
   };
 
   public getClassInvalid(control: string): Record<string, boolean> {
@@ -60,9 +61,8 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
   public reset(): void {
     this.resetForm();
     this.rejected();
-    this.redirectToList();
   }
-  
+
   public redirectToList(): void {
     this.router.navigateByUrl('/products/list');
   }

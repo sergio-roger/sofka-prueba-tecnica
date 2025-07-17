@@ -11,6 +11,7 @@
 table {
   table-layout: fixed;
   border-collapse: collapse;
+  min-width: 700px;
 
   thead > tr {
     background-color: var(--sofka-color-gray-100);
@@ -35,6 +36,7 @@ table {
 
 .table-wrapper .table-footer {
   display: flex;
+  flex-direction: row !important;
   gap: 1rem;
   justify-content: space-between;
 
