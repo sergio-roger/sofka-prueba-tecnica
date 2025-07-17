@@ -1,1 +1,131 @@
-<p>edit-products works!</p>
+<div class="view">
+  <div class="container-form">
+    <div class="title">
+      <h2>Formulario de Actualización</h2>
+    </div>
+
+    <hr />
+
+    <ng-container *ngTemplateOutlet="Tform" />
+  </div>
+</div>
+
+<ng-template #Tform>
+  <form class="form form-create" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-body">
+      <div class="input input-text disabled">
+        <label for="id">ID</label>
+        <input
+          id="id"
+          type="text"
+          formControlName="id"
+          minLength="3"
+          maxLength="10"
+          required
+          [ngClass]="getClassInvalid('id')"
+        />
+
+        @if (validation.verify(id) && id.errors) {
+        <app-input-errors [inputErrors]="id.errors" />
+        }
+      </div>
+
+      <div class="input input-text">
+        <label for="name">Nombre</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          minLength="5"
+          maxLength="100"
+          required
+          [ngClass]="getClassInvalid('name')"
+        />
+
+        @if (validation.verify(name) && name.errors) {
+        <app-input-errors [inputErrors]="name.errors" />
+        }
+      </div>
+
+      <div class="input input-text">
+        <label for="description">Descripción</label>
+        <input
+          id="description"
+          type="text"
+          formControlName="description"
+          minLength="10"
+          maxLength="200"
+          required
+          [ngClass]="getClassInvalid('description')"
+        />
+
+        @if (validation.verify(description) && description.errors) {
+        <app-input-errors [inputErrors]="description.errors" />
+        }
+      </div>
+
+      <div class="input input-text">
+        <label for="logo">Logo</label>
+        <input
+          id="logo"
+          type="text"
+          formControlName="logo"
+          required
+          [ngClass]="getClassInvalid('logo')"
+        />
+
+        @if (validation.verify(logo) && logo.errors) {
+        <app-input-errors [inputErrors]="logo.errors" />
+        }
+      </div>
+
+      <div class="input input-text">
+        <label for="date_release">Fecha Liberación</label>
+        <input
+          id="date_release"
+          type="date"
+          formControlName="date_release"
+          required
+          [ngClass]="getClassInvalid('date_release')"
+          (input)="updateDateReivision()"
+        />
+
+        @if (validation.verify(date_release) && date_release.errors) {
+        <app-input-errors [inputErrors]="date_release.errors" />
+        }
+      </div>
+
+      <div class="input input-text disabled">
+        <label for="date_revision">Fecha revisión</label>
+        <input
+          id="date_revision"
+          type="date"
+          formControlName="date_revision"
+          required
+          [ngClass]="getClassInvalid('date_revision')"
+        />
+
+        @if (validation.verify(date_revision) && date_revision.errors) {
+        <app-input-errors [inputErrors]="date_revision.errors" />
+        }
+      </div>
+    </div>
+
+    <ng-container *ngTemplateOutlet="TformButtons" />
+  </form>
+</ng-template>
+
+<ng-template #TformButtons>
+  <div class="form-actions">
+    <button class="form-btn btn-secondary" type="button" (click)="back()">
+      Regresar
+    </button>
+    <button
+      class="form-btn btn-primary"
+      type="submit"
+      [ngClass]="classButtonSend"
+    >
+      Enviar
+    </button>
+  </div>
+</ng-template>
