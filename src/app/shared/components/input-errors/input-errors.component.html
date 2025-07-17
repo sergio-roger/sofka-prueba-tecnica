@@ -21,6 +21,10 @@
     <small> El campo debe tener un formato válido</small>
   }
 
+  @if (inputErrors()['invalidProductId']) {
+    <small>ID no válido!</small>
+  }
+
   @if(inputErrors()['invalidDate']) {
     <small>La fecha es inválida</small>
   }

@@ -1,8 +1,9 @@
 import { AbstractControl, Validators } from '@angular/forms';
 import { SofkaFormDirective } from '@core/directives/sofka-form.directive';
 import { DateFnsCustom } from '@core/utils/date-fsn-custom';
-import { dateReleaseValidator } from '@products/types/date-release.validator';
-import { dateRevisionValidator } from '@products/types/date-revision.validator';
+import { dateReleaseValidator } from '@products/validators/date-release.validator';
+import { dateRevisionValidator } from '@products/validators/date-revision.validator';
+import { productIdValidator } from '@products/validators/id-product.validator';
 
 export class CreateProductsForm extends SofkaFormDirective {
   private dateFnsCustom = new DateFnsCustom();
@@ -13,7 +14,15 @@ export class CreateProductsForm extends SofkaFormDirective {
   private skeleton = {
     id: [
       '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(10)],
+      {
+        validators: [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(10),
+        ],
+        asyncValidators: [productIdValidator()],
+        updateOn: 'blur',
+      },
     ],
     name: [
       '',

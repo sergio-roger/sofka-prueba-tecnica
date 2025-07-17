@@ -12,6 +12,7 @@ import { ProductsHttpService } from './products-http.service';
 export class ProductsService {
   private productsSubject = new Subject<Product[]>();
   private productSubject = new Subject<Product | null>();
+  private idValidSubject = new Subject<boolean>();
 
   private toastr = inject(ToastrService);
   private http = inject(ProductsHttpService);
@@ -22,6 +23,10 @@ export class ProductsService {
 
   get product$() {
     return this.productSubject.asObservable().pipe(shareReplay(1));
+  }
+
+  get idValid$() {
+    return this.idValidSubject.asObservable().pipe(shareReplay(1));
   }
 
   public list(): void {
@@ -72,5 +77,25 @@ export class ProductsService {
   private errorCreate = (error: HttpErrorResponse): void => {
     console.log(error);
     this.productSubject.next(null);
+  };
+
+  public verificationId(id: string): void {
+    if (!id) {
+      return;
+    }
+
+    this.http.verificationId$(id)
+    .subscribe({
+      next: this.nextVerificatonid,
+      error: this.errorVerificationid
+    });
+  }
+
+  private nextVerificatonid = (valid: boolean): void => {
+    this.idValidSubject.next(valid);
+  };
+
+  private errorVerificationid = (error: HttpErrorResponse): void => {
+    console.log(error);
   };
 }
