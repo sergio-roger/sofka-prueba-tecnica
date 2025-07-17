@@ -1,0 +1,16 @@
+<form class="container-search" [formGroup]="form">
+  <input
+    type="text"
+    placeholder="Search..."
+    (input)="onSearch()"
+    formControlName="search"
+  />
+
+  <button
+    class="form-btn btn-primary form-btn-create"
+    type="button"
+    [routerLink]="['/products/create']"
+  >
+    Agregar
+  </button>
+</form>

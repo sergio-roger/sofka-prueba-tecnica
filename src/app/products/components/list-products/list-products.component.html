@@ -1,15 +1,5 @@
 <div class="view">
-  <div class="search-box container-filters">
-    <input type="text" placeholder="Search..." (input)="onSearch()" />
-
-    <button
-      class="form-btn btn-primary form-btn-create"
-      type="submit"
-      [routerLink]="['/products/create']"
-    >
-      Agregar
-    </button>
-  </div>
+  <app-filter-products />
 
   <app-table-products />
 </div>

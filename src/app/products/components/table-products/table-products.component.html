@@ -31,6 +31,11 @@
     </tbody>
   </table>
 
+  <ng-container *ngTemplateOutlet="TPaginate" />
+</div>
+}
+
+<ng-template #TPaginate>
   <form class="table-footer" [formGroup]="form">
     <span
       >{{ filteredProducts.length }}
@@ -43,5 +48,4 @@
       }
     </select>
   </form>
-</div>
-}
+</ng-template>
