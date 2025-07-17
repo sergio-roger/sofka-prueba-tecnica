@@ -2,20 +2,24 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, shareReplay, Subject } from 'rxjs';
 import { Product } from '../types/product';
-import { ProductsResponse } from '../types/product.response';
+import { ProductResponse, ProductsResponse } from '../types/product.response';
 import { ProductsHttpService } from './products-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-
   private productsSubject = new Subject<Product[]>();
+  private productSubject = new Subject<Product | null>();
 
   private http = inject(ProductsHttpService);
 
   get products$() {
     return this.productsSubject.asObservable().pipe(shareReplay(1));
+  }
+
+  get product$() {
+    return this.productSubject.asObservable().pipe(shareReplay(1));
   }
 
   public list(): void {
@@ -38,5 +42,32 @@ export class ProductsService {
 
   private errorList = (error: HttpErrorResponse): void => {
     this.productsSubject.next([]);
+  };
+
+  public create(product: Product): void {
+    if (!product) {
+      return;
+    }
+
+    this.http.create$(product)
+    .subscribe({
+      next: this.nextCreate,
+      error: this.errorCreate,
+    });
+  }
+
+  private nextCreate = (response: ProductResponse): void => {
+    if (!response) {
+      this.productSubject.next(null);
+      return;
+    }
+
+    const product = response.data;
+    this.productSubject.next(product);
+  };
+
+  private errorCreate = (error: HttpErrorResponse): void => {
+    console.log(error);
+    this.productSubject.next(null);
   };
 }

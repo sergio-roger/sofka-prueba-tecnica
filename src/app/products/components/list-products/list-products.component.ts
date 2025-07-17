@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Product } from '../../types/product';
-import { ProductsService } from '../../services/products.service';
-import { Subscription } from 'rxjs';
+import { SofkaSubsDirective } from '@core/directives/sofka-subs.directive';
+import { ProductsService } from '@products/services/products.service';
+import { Product } from '@products/types/product';
 
 @Component({
   selector: 'app-list-products',
@@ -13,11 +13,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.scss'
 })
-export class ListProductsComponent  implements OnInit, OnDestroy {
+export class ListProductsComponent extends SofkaSubsDirective implements OnInit, OnDestroy {
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
   public searchTerm: string = '';
-  public subs = new Subscription();
+
 
   private productsService = inject(ProductsService);
 
@@ -27,10 +27,6 @@ export class ListProductsComponent  implements OnInit, OnDestroy {
     this.subs.add(this.products$.subscribe(this.getProducts));
 
     this.productsService.list();
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
   }
 
   private getProducts = (products: Product[]): void => {

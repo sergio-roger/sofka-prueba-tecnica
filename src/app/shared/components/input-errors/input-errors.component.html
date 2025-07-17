@@ -1,0 +1,35 @@
+<div class="container-errors">
+  @if (inputErrors()['required']) {
+    <small> El campo es requerido</small>
+  }
+
+  @if (inputErrors()['minlength']) {
+    <small
+      > El campo debe tener al menos
+      {{ inputErrors()['minlength'].requiredLength }} caracteres</small
+    >
+  }
+
+  @if (inputErrors()['maxlength']) {
+    <small
+      > El campo debe tener como máximo
+      {{ inputErrors()['maxlength'].requiredLength }} caracteres</small
+    >
+  }
+
+  @if (inputErrors()['pattern']) {
+    <small> El campo debe tener un formato válido</small>
+  }
+
+  @if(inputErrors()['invalidDate']) {
+    <small>La fecha es inválida</small>
+  }
+
+  @if (inputErrors()['invalidDateRelease']) {
+    <small>La fecha debe ser igual o mayor a la fecha actual</small>
+  }
+
+  @if (inputErrors()['invalidDateRevision']) {
+    <small>la fecha debe ser exactamente un año posterior a la fecha de liberación</small>
+  }
+</div>

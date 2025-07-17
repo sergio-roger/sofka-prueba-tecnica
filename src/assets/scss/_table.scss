@@ -1,6 +1,6 @@
 .table-wrapper {
   overflow-x: auto;
-  background-color: var(--sofka-color-bg-white);
+  background-color: var(--sofka-color-white);
   padding: 1.4rem;
   box-sizing: border-box;
   display: flex;
@@ -13,12 +13,12 @@ table {
   border-collapse: collapse;
 
   thead > tr {
-    background-color: var(--sofka-color-bg-gray-100);
-    border-bottom: 1px solid var(--sofka-color-bg-gray-200);
+    background-color: var(--sofka-color-gray-100);
+    border-bottom: 1px solid var(--sofka-color-gray-200);
   }
 
   tbody > tr {
-    border-bottom: 1px solid var(--sofka-color-bg-gray-200);
+    border-bottom: 1px solid var(--sofka-color-gray-200);
   }
 
   thead > tr > th, tbody > tr > td {

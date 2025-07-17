@@ -1,0 +1,39 @@
+form {
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    margin: auto;
+    gap: 1rem;
+  }
+}
+
+.form-btn {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 0.4rem;
+  color: var(--sofka-color-blue);
+  font-weight: 600;
+}
+
+.btn-secondary {
+  background-color: var(--sofka-color-gray-100);
+}
+
+.btn-primary {
+  background-color: var(--sofka-color-yellow);
+}
+
+
+@media (min-width: 640px) {
+  form {
+    .form-actions {
+       max-width: 18rem;
+       flex-direction: row;
+       gap: 4rem;
+    }
+  }
+}

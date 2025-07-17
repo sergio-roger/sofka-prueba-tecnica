@@ -5,12 +5,12 @@
 }
 
 body {
-  background-color: var(--sofka-color-bg-gray-100);
+  background-color: var(--sofka-color-gray-100);
   width: 100%;
 }
 
-.border {
-  border: 1px solid red;
+.border-red {
+  border: 2px solid var(--sofka-color-red) !important;
 }
 
 .container {
@@ -33,15 +33,49 @@ body {
   }
 }
 
+.container .view  {
+  .container-form {
+    margin: 0 auto;
+    background-color: var(--sofka-color-white);
+    max-width: 40rem;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+    padding-bottom: 2rem;
 
-.search-box {
-  margin: 1rem 0;
+    .title {
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 1rem;
+      padding-bottom: 0px;
+      box-sizing: border-box;
+    }
+
+    hr {
+      background-color: var(--sofka-color-gray-300) !important;
+    }
+
+    form {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      box-sizing: border-box;
+    }
+  }
 }
 
-.search-box input {
-  width: 100%;
-  max-width: 12rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 0.4rem;
+.opacity-low {
+  opacity: 0.5 !important;
+}
+
+.container-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  small {
+    color: var(--sofka-color-red);
+    font-weight: 600;
+  }
 }

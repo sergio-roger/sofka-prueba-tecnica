@@ -1,0 +1,54 @@
+.search-box {
+  margin: 1rem 0;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 12rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  .form-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-sizing: border-box;
+
+  label {
+    font-weight: 800;
+    color: var(--sofka-color-gray-400);
+  }
+
+  input {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-radius: 0.4rem;
+    outline: none;
+    border: 2px solid var(--sofka-color-gray-300);
+    color: var(--sofka-color-gray-400);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  form {
+    .form-body {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
