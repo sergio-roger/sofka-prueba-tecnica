@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputErrorsComponent } from '@shared/components/input-errors/input-errors.component';
-import { CreateProductsForm } from './create-products.form';
+import { Router } from '@angular/router';
 import { ProductsService } from '@products/services/products.service';
 import { Product } from '@products/types/product';
+import { InputErrorsComponent } from '@shared/components/input-errors/input-errors.component';
+import { CreateProductsForm } from './create-products.form';
 
 @Component({
   selector: 'app-create-products',
@@ -16,6 +17,7 @@ import { Product } from '@products/types/product';
 export class CreateProductsComponent extends CreateProductsForm implements OnInit{
 
   private productsService = inject(ProductsService);
+  private router = inject(Router);
 
   public product$ = this.productsService.product$;
 
@@ -30,7 +32,12 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
   }
 
   private getProduct = (product: Product | null): void => {
-    this.rejected();
+    if (!product) {
+      this.rejected();
+      return;
+    }
+
+    this.reset();
   };
 
   public getClassInvalid(control: string): Record<string, boolean> {
@@ -51,7 +58,12 @@ export class CreateProductsComponent extends CreateProductsForm implements OnIni
   }
 
   public reset(): void {
-    this.form.reset();
+    this.resetForm();
     this.rejected();
+    this.redirectToList();
+  }
+  
+  public redirectToList(): void {
+    this.router.navigateByUrl('/products/list');
   }
 }

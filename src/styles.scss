@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-@use 'assets/scss/tokens';
+@import 'ngx-toastr/toastr';
 
-@use 'assets/scss/buttons';
-@use 'assets/scss/general';
-@use 'assets/scss/input';
-@use 'assets/scss/table';
+@import 'assets/scss/tokens';
+
+@import 'assets/scss/buttons';
+@import 'assets/scss/general';
+@import 'assets/scss/input';
+@import 'assets/scss/table';

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, shareReplay, Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { shareReplay, Subject } from 'rxjs';
 import { Product } from '../types/product';
 import { ProductResponse, ProductsResponse } from '../types/product.response';
 import { ProductsHttpService } from './products-http.service';
@@ -12,6 +13,7 @@ export class ProductsService {
   private productsSubject = new Subject<Product[]>();
   private productSubject = new Subject<Product | null>();
 
+  private toastr = inject(ToastrService);
   private http = inject(ProductsHttpService);
 
   get products$() {
@@ -64,6 +66,7 @@ export class ProductsService {
 
     const product = response.data;
     this.productSubject.next(product);
+    this.toastr.success('Producto creado con éxito');
   };
 
   private errorCreate = (error: HttpErrorResponse): void => {

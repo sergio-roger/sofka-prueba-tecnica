@@ -63,4 +63,10 @@ export class CreateProductsForm extends SofkaFormDirective {
   get invalid() {
     return this.form.invalid;
   }
+
+  protected resetForm(): void {
+    this.form.reset();
+    this.date_release.setValue(this.today);
+    this.date_revision.setValue(this.nextYear);
+  }
 }
