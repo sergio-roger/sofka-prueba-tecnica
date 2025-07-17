@@ -50,6 +50,25 @@ export class ProductsService {
     this.productsSubject.next([]);
   };
 
+  public verificationId(id: string): void {
+    if (!id) {
+      return;
+    }
+
+    this.http.verificationId$(id).subscribe({
+      next: this.nextVerificatonid,
+      error: this.errorVerificationid,
+    });
+  }
+
+  private nextVerificatonid = (valid: boolean): void => {
+    this.idValidSubject.next(valid);
+  };
+
+  private errorVerificationid = (error: HttpErrorResponse): void => {
+    console.log(error);
+  };
+
   public create(product: Product): void {
     if (!product) {
       return;
@@ -81,22 +100,35 @@ export class ProductsService {
     this.productSubject.next(null);
   };
 
-  public verificationId(id: string): void {
-    if (!id) {
+  public update(product: Product): void {
+    if (!product || !product.id) {
       return;
     }
 
-    this.http.verificationId$(id).subscribe({
-      next: this.nextVerificatonid,
-      error: this.errorVerificationid,
+    this.http.update$(product)
+    .subscribe({
+      next: this.nextUpdate,
+      error: this.errorUpdate,
     });
   }
 
-  private nextVerificatonid = (valid: boolean): void => {
-    this.idValidSubject.next(valid);
+  private nextUpdate = (response: ProductResponse): void => {
+    if (!response) {
+      return;
+    }
+
+    const product = response.data;
+    this.productSubject.next(product);
+    this.toastr.success('Producto actualizado con éxito')
   };
 
-  private errorVerificationid = (error: HttpErrorResponse): void => {
-    console.log(error);
+  private errorUpdate = (error: HttpErrorResponse): void => {
+    if (error.status === 404) {
+      this.toastr.error(
+        'No se encuentra el identificador del producto'
+      );
+    }
+
+    this.productSubject.next(null);
   };
 }

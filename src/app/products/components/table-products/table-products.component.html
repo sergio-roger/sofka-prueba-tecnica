@@ -5,9 +5,25 @@
       <tr>
         <th>Logo</th>
         <th>Nombre del producto</th>
-        <th>Descripción</th>
-        <th>Fecha de liberación</th>
-        <th>Fecha de restructuración</th>
+        <th>
+          <div class="table-header-icon">
+            Descripción
+            <span class="material-symbols-outlined"> info </span>
+          </div>
+        </th>
+        <th>
+          <div class="table-header-icon">
+            Fecha de liberación
+            <span class="material-symbols-outlined"> info </span>
+          </div>
+        </th>
+        <th>
+          <div class="table-header-icon">
+            Fecha de restructuración
+            <span class="material-symbols-outlined"> info </span>
+          </div>
+        </th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +38,17 @@
         <td>{{ item.description }}</td>
         <td>{{ item.date_release }}</td>
         <td>{{ item.date_revision }}</td>
+        <td>
+          <div class="table-actions">
+            <button class="form-btn btn-action" (click)="viewMenuContextual(item)">
+              <span class="material-symbols-outlined"> more_vert </span>
+            </button>
+
+            <div class="table-option-menu" [ngClass]="{'hidden': !item.action}">
+              <span class="form-btn-small" [routerLink]="['/products', 'edit', item.id]">Editar</span>
+            </div>
+          </div>
+        </td>
       </tr>
       } @empty {
       <tr>

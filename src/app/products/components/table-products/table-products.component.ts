@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { ProductsService } from '@products/services/products.service';
 import { Product } from '@products/types/product';
 import { TableProductsForm } from './table-products.form';
@@ -9,7 +9,7 @@ import { TableProductsForm } from './table-products.form';
 @Component({
   selector: 'app-table-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './table-products.component.html',
   styleUrl: './table-products.component.scss',
 })
@@ -34,6 +34,10 @@ export class TableProductsComponent extends TableProductsForm {
     }
 
     this.products = products;
+    this.products = this.products.map(product => {
+      product.action = false;
+      return product;
+    })
     this.filteredProducts = [...this.products];
     this.subs.add(this.queryParamMap$.subscribe(this.queryParamMap));
   };
@@ -81,5 +85,15 @@ export class TableProductsComponent extends TableProductsForm {
     const end =
       limitPage > this.products.length ? this.products.length : limitPage;
     this.filteredProducts = products.slice(start, end);
+  }
+
+  public viewMenuContextual(product: Product): void {
+    this.filteredProducts = this.filteredProducts.map(item => {
+    if (item.id === product.id) {
+      return { ...item, action: !product.action };
+    }
+
+    return { ...item, action: false };
+  });
   }
 }

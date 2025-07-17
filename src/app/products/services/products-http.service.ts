@@ -26,4 +26,9 @@ export class ProductsHttpService {
     const url = `${environment.api}/products`;
     return this.http.post<ProductResponse>(url, product);
   }
+
+  public update$(product: Product): ProductResponseObservable {
+    const url = `${environment.api}/products/${product.id}`;
+    return this.http.put<ProductResponse>(url, product);
+  }
 }

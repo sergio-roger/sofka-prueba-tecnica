@@ -11,7 +11,7 @@
 table {
   table-layout: fixed;
   border-collapse: collapse;
-  min-width: 700px;
+  min-width: 47rem;
 
   thead > tr {
     background-color: var(--sofka-color-gray-100);
@@ -49,5 +49,39 @@ table {
     max-width: 4rem;
     padding: 0.5rem;
     border-radius: 0.4rem;
+  }
+}
+
+.table-header-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  box-sizing: border-box;
+}
+
+.table-actions {
+  position: relative;
+}
+
+.table-option-menu {
+  position: absolute;
+  box-sizing: border-box;
+  min-width: 5rem;
+  top: 36px;
+  left: -23px;
+  padding: 0.7rem;
+  background-color: var(--sofka-color-gray-100);
+  z-index: 10;
+  border-radius: 0.4rem;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--sofka-color-gray-100);
+    top: -6px;
+    right: 6px;
+    transform: rotate(45deg);
   }
 }
