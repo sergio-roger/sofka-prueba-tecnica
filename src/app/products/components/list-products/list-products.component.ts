@@ -9,14 +9,9 @@ import { TableProductsComponent } from '../table-products/table-products.compone
 @Component({
   selector: 'app-list-products',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    TableProductsComponent
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, TableProductsComponent],
   templateUrl: './list-products.component.html',
-  styleUrl: './list-products.component.scss'
+  styleUrl: './list-products.component.scss',
 })
 export class ListProductsComponent implements OnInit {
   public search = '';
@@ -36,5 +31,4 @@ export class ListProductsComponent implements OnInit {
     // this.currentPage = 1;
     // this.paginate();
   }
-
 }
