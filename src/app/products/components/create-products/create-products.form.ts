@@ -6,7 +6,7 @@ import { dateRevisionValidator } from '@products/validators/date-revision.valida
 import { productIdValidator } from '@products/validators/id-product.validator';
 
 export class CreateProductsForm extends SofkaFormDirective {
-  protected dateFnsCustom = new DateFnsCustom();
+  public dateFnsCustom = new DateFnsCustom();
 
   protected today = this.dateFnsCustom.today();
   protected nextYear = this.dateFnsCustom.addYears(1);
@@ -41,7 +41,7 @@ export class CreateProductsForm extends SofkaFormDirective {
     date_revision: [{value: this.nextYear, disabled: true }, [Validators.required]],
   };
 
-  protected form = this.fb.group(this.skeleton, {
+  public form = this.fb.group(this.skeleton, {
     validators: [dateRevisionValidator()],
   });
 
@@ -73,7 +73,7 @@ export class CreateProductsForm extends SofkaFormDirective {
     return this.form.invalid;
   }
 
-  protected resetForm(): void {
+  public resetForm(): void {
     this.form.reset();
     this.date_release.setValue(this.today);
     this.date_revision.setValue(this.nextYear);

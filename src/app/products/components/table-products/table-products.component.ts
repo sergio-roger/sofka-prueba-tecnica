@@ -21,14 +21,14 @@ export class TableProductsComponent extends TableProductsForm {
   private productsService = inject(ProductsService);
   private _cdr = inject(ChangeDetectorRef);
 
-  private queryParamMap$ = this.route.queryParamMap;
+  public queryParamMap$ = this.route.queryParamMap;
   public products$ = this.productsService.products$;
 
   ngOnInit(): void {
     this.subs.add(this.products$.subscribe(this.getProducts));
   }
 
-  private getProducts = (products: Product[]): void => {
+  public getProducts = (products: Product[]): void => {
     if (products.length === 0) {
       return;
     }
@@ -42,7 +42,7 @@ export class TableProductsComponent extends TableProductsForm {
     this.subs.add(this.queryParamMap$.subscribe(this.queryParamMap));
   };
 
-  private queryParamMap = (queryParamMap: ParamMap): void => {
+  public queryParamMap = (queryParamMap: ParamMap): void => {
     const searchText = queryParamMap.get('search');
 
     if (!queryParamMap.has('search')) {
@@ -79,7 +79,7 @@ export class TableProductsComponent extends TableProductsForm {
     this.paginate(this.products);
   }
 
-  private paginate(products: Product[]): void {
+  public paginate(products: Product[]): void {
     const start = (this.currentPage - 1) * this.selectedPageSize;
     const limitPage = start + this.selectedPageSize;
     const end =

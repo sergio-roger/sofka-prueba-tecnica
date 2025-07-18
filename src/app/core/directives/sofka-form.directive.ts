@@ -12,7 +12,7 @@ export class SofkaFormDirective extends SofkaSubsDirective {
 
   private submitForm = false;
   private loaderForm = false;
-  protected validation = ValidationInput;
+  public validation = ValidationInput;
 
   get loader() {
     return this.loaderForm;
@@ -22,19 +22,19 @@ export class SofkaFormDirective extends SofkaSubsDirective {
     return this.submitForm;
   }
 
-  protected submited(): void {
+  public submited(): void {
     this.submitForm = true;
   }
 
-  protected rejected(): void {
+  public rejected(): void {
     this.submitForm = false;
   }
 
-  protected enableLoader(): void {
+  public enableLoader(): void {
     this.loaderForm = true;
   }
 
-  protected disableLoader(): void {
+  public disableLoader(): void {
     this.loaderForm = false;
   }
 }

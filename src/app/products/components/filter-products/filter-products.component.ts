@@ -21,7 +21,7 @@ export class FilterProductsComponent extends FilterProductsForm implements OnIni
     this.subs.add(this.queryParamMap$.subscribe(this.queryParamMap));
   }
 
-  private queryParamMap = (queryParamMap: ParamMap): void => {
+  public queryParamMap = (queryParamMap: ParamMap): void => {
     const searchText =  queryParamMap.get('search');
 
     if (!queryParamMap.has('search')) {

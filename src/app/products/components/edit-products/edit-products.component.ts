@@ -81,7 +81,7 @@ export class EditProductsComponent
     this.redirectToList();
   };
 
-  private fillForm(): void {
+  public fillForm(): void {
     if (!this.product) {
       return;
     }
