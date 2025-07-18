@@ -1,6 +1,6 @@
-import { Component, input, OnInit } from '@angular/core';
-import { ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-input-errors',
@@ -9,10 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './input-errors.component.html',
   styleUrl: './input-errors.component.scss'
 })
-export class InputErrorsComponent implements OnInit {
+export class InputErrorsComponent {
  public inputErrors = input.required<ValidationErrors>();
-
-  ngOnInit(): void {
-    console.log(this.inputErrors());
-  }
 }
